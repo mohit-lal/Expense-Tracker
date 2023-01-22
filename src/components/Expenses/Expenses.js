@@ -15,6 +15,19 @@ const Expenses = (props) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
+  let expenseContent = <p> No expense found. </p>;
+
+  // This is using the if statement for filter mapping
+  if (filteredExpenses.length > 0) {
+    expenseContent = filterChangeHandler.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
   return (
     <div>
       <Card className="expenses">
@@ -22,15 +35,30 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
+        {/* // This is abusing as we used &&   */}
+        {/* {filteredExpenses.length === 0 && "No expenses found."} 
+        {filteredExpenses.length > 0 && (
+          filteredExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+            />
+          ))
+        )} */}
 
-        {filteredExpenses.map((expense) => (
+        {/* This is using the ternary operator */}
+        {/* {filteredExpenses.length === 0 ? (<p>No expense found.</p>) :  
+        (filteredExpenses.map((expense) => (
           <ExpenseItem
             key={expense.id}
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
           />
-        ))}
+        )))
+        } */}
       </Card>
     </div>
   );
