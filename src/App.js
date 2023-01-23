@@ -35,7 +35,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <p>Lets begin React</p>
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
     </div>
